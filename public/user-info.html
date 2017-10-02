@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>用户个人资料</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/user-info.css" />
+	</head>
+
+	<body class="user-info">
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="menu-nav">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="sr-only">切换导航</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					<a class="navbar-brand" href="#">OA系统</a>
+				</div>
+				<div class="navbar-collapse collapse">
+					<div class="user-info">
+						<ol class="breadcrumb">
+							<li class="active">
+								<a href="#">User（185分）</a>
+							</li>
+							<li>
+								<a href="#">论坛</a>
+							</li>
+							<li>
+								<a href="#">消息</a>
+							</li>
+							<li>
+								<a href="#">退出</a>
+							</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="message-area">
+				<ol class="breadcrumb">
+					<li>
+						<a href="#">当前位置：</a>
+					</li>
+					<li>
+						<a href="#">主页</a>
+					</li>
+					<li className="active">
+						个人信息
+					</li>
+				</ol>
+			</div>
+			<div class="message-detail-area">
+				<ul class="nav nav-tabs">
+					<li role="presentation" class="active">
+						<a href="#tab1" data-toggle="tab">个人信息
+						</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane row-fluid active" id="tab1">
+						<div class="list-group">
+							<form class="form-horizontal">
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">账户名</label>
+									<div class="col-sm-10">
+										<input type="email" class="form-control"  placeholder="" value="张靖bibib">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
+									<div class="col-sm-10">
+										<input type="email" class="form-control"  placeholder="Your name">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputPassword3" class="col-sm-2 control-label">学号</label>
+									<div class="col-sm-10">
+										<input type="password" class="form-control"  placeholder="Student ID">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputPassword3" class="col-sm-2 control-label">班级</label>
+									<div class="col-sm-10">
+										<input type="password" class="form-control"  placeholder="Class name">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputPassword3" class="col-sm-2 control-label">学校</label>
+									<div class="col-sm-10">
+										<input type="password" class="form-control"  placeholder="College name">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputPassword3" class="col-sm-2 control-label">电话</label>
+									<div class="col-sm-10">
+										<input class="form-control"  placeholder="Telephone number" value="13648030827(已验证)">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputPassword3" class="col-sm-2 control-label">性别</label>
+									<div class="col-sm-10">
+										<select class="form-control">
+											<option>男</option>
+											<option selected="selected">女</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputPassword3" class="col-sm-2 control-label">入学年份</label>
+									<div class="col-sm-10">
+										<select class="form-control">
+											<option>2013</option>
+											<option>2014</option>
+											<option  selected="selected">2015</option>
+											<option>2016</option>
+											<option>2017</option>
+											<option>2018</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputPassword3" class="col-sm-2 control-label">学历</label>
+									<div class="col-sm-10">
+										<select class="form-control">
+											<option selected="selected">本科</option>
+											<option>专科</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputPassword3" class="col-sm-2 control-label">专业</label>
+									<div class="col-sm-10">
+										<select class="form-control">
+											<option selected="selected">信息工程</option>
+											<option>软件工程</option>
+											<option>网络工程</option>
+											<option>物联网工程</option>
+											<option>计算机科学与技术专业</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+										<button class="btn btn-success modify-btn" type="submit">修改资料</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<hr class="divider task-divider" />
+			<div class="summary">
+				<footer>
+					<p class="pull-right">
+						<a href="#top">回到顶部</a>
+					</p>
+					<p class="pull-left">&copy; 东软小团队</p>
+				</footer>
+			</div>
+		</div>
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+
+</html>
