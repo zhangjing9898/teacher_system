@@ -30,6 +30,20 @@
   margin: 0 auto;
   margin-top: 80px;
 }
+.search-content .message-area {
+  margin-top: 77px;
+}
+.search-content .message-area a {
+  color: black;
+  font-family: 微软雅黑;
+}
+.search-content .message-area span {
+  background-color: #D12610;
+  padding: 3px 7px 2px 7px;
+}
+.search-content .message-area .breadcrumb > li + li:before {
+  color: black;
+}
 .search-content .row .add-teacher {
   padding: 5px;
   font-family: 微软雅黑;
@@ -66,4 +80,14 @@
   margin-bottom: 20px;
   border: 0;
   border-top: 1px solid rgba(158, 158, 158, 0.54);
+}
+@media (max-width:520px) {
+  .search-content {
+    width: 95%;
+    margin-top: 40px;
+    font-size: 12px;
+  }
+  .search-content .history-task-record {
+    margin-top: -20px;
+  }
 }

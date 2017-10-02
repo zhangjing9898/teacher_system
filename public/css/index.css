@@ -18,10 +18,11 @@
   height: 317px;
 }
 .container .row .task-area .img-circle {
-  border-radius: 50%;
+	border-radius: 0;
   width: 150px;
   height: 150px;
 }
+
 body {
 				padding-top: 50px;
 				padding-bottom: 40px;
