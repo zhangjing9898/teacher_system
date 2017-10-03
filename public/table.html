@@ -6,7 +6,7 @@
 		<title>taskArea</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" href="css/taskArea.css" />
+		<link rel="stylesheet" href="css/table.css" />
 		<script type="text/javascript" src="js/Chart.min.js"></script>
 		<style>
 			canvas {
@@ -25,13 +25,13 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-					<a class="navbar-brand" href="#">OA系统</a>
+					<a class="navbar-brand" href="#">教师培训系统</a>
 				</div>
 				<div class="navbar-collapse collapse">
 					<div class="user-info">
 						<ol class="breadcrumb">
 							<li class="active">
-								<a href="#">User（185分）</a>
+								<a href="user-info.html">User（185分）</a>
 							</li>
 							<li>
 								<a href="#">论坛</a>
@@ -40,7 +40,7 @@
 								<a href="#">消息</a>
 							</li>
 							<li>
-								<a href="#">退出</a>
+								<a href="index.html">退出</a>
 							</li>
 						</ol>
 					</div>
@@ -48,7 +48,7 @@
 			</div>
 		</div>
 		<div class="container">
-			<div class="task-area">
+			<div class="table-all-area">
 				<div class="message-area">
 					<ol class="breadcrumb">
 						<li>
@@ -58,15 +58,58 @@
 							<a href="#">主页</a>
 						</li>
 						<li class="active">
-							<a href="#">课程管理</a>
+							<a href="#">报表情况</a>
 						</li>
 					</ol>
 				</div>
-				<div style="width:1100px;height:450px; margin: 0 auto;">
+				<div class="canvas-area" style="width:1100px;height:470px; margin: 0 auto;">
 					<canvas id="line" height="450" width="600"></canvas>
 					<canvas id="canvas" height="450" width="450"></canvas>
-					<canvas id="radar" height="450" width="450"></canvas>
 				</div>
+					<table class="table table-bordered">
+					<tr>
+						<th>日期</th>
+						<th>教师姓名</th>
+						<th>教师工号</th>
+						<th>当日学习时长</th>
+						<th>培训科目</th>
+						<th>总学习时长</th>
+						<th>操作</th>
+					</tr>
+					<tr>
+						<td>2017年2月10日</td>
+						<td>哈利</td>
+						<td>15310920205</td>
+						<td>1小时10分</td>
+						<td>安全守则</td>
+						<td>35小时</td>
+						<td>
+							<a>查看详情</a>	
+						</td>
+					</tr>
+					<tr>
+						<td>2017年2月10日</td>
+						<td>哈利</td>
+						<td>15310920205</td>
+						<td>1小时10分</td>
+						<td>安全守则</td>
+						<td>35小时</td>
+						<td>
+							<a>查看详情</a>	
+						</td>
+					</tr>
+					<tr>
+						<td>2017年2月10日</td>
+						<td>哈利</td>
+						<td>15310920205</td>
+						<td>1小时10分</td>
+						<td>安全守则</td>
+						<td>35小时</td>
+						<td>
+							<a>查看详情</a>	
+						</td>
+					</tr>
+			</table>
 			</div>
 			<hr class="divider task-divider" />
 			<div class="container summary">
@@ -74,7 +117,7 @@
 					<p class="pull-right">
 						<a href="#top">回到顶部</a>
 					</p>
-					<p class="pull-left">&copy; 东软小团队</p>
+					<p class="pull-left">&copy; 成都师范学院</p>
 				</footer>
 			</div>
 		</div>

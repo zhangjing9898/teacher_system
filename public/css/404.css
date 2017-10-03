@@ -25,6 +25,17 @@
 .navbar .user-info .breadcrumb > .active a {
   color: white;
 }
+.Error-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  z-index: 1;
+}
 .Error-content .lost-task-area {
   display: block;
   z-index: 100;
@@ -70,8 +81,26 @@
 .Error-content footer a {
   color: white;
 }
-.Error-content .bg-video {
-  z-index: -999;
-  position: fixed;
-  width: 100%;
+.Error-content video {
+  min-width: 100%;
+  min-height: 100%;
+}
+@media (max-width: 480px) {
+  .Error-content .lost-task-area {
+    margin-left: -108px;
+  }
+  .Error-content .lost-task-area p {
+    font-size: 25px;
+  }
+  .Error-content .lost-task-area h2 {
+    font-size: 36px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  .Error-content .lost-task-area .back-button {
+    width: 150px;
+    height: 60px;
+    line-height: 30px;
+    font-size: 20px;
+  }
 }

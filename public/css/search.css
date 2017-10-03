@@ -81,7 +81,7 @@
   border: 0;
   border-top: 1px solid rgba(158, 158, 158, 0.54);
 }
-@media (max-width:520px) {
+@media (max-width: 520px) {
   .search-content {
     width: 95%;
     margin-top: 40px;
