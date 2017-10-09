@@ -11,46 +11,7 @@
 	</head>
 
 	<body style="height: 875px;">
-		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="menu-nav">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-							<span class="sr-only">切换导航</span>
-							<!--.sr-only是 除了屏幕阅读器外，其他设备上隐藏该元素，这个是用于屏幕阅读器的，帮助残障人士更好的访问网站。-->
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-					<a class="navbar-brand" href="#">OA系统</a>
-				</div>
-				<div class="navbar-collapse collapse">
-					<div class="row">
-						<div class="col-lg-6 header-search">
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Search for...">
-								<span class="input-group-btn">
-       									 <button class="btn btn-default" type="button">Go!</button>
-      								</span>
-							</div>
-						</div>
-						<ul class="nav navbar-nav">
-							<li class="">
-								<a href="#ad-carousel">官网详情</a>
-							</li>
-							<li>
-								<a href="#summary-container">简述</a>
-							</li>
-							<li>
-								<a href="#" data-toggle="modal" data-target="#about-modal">登录</a>
-							</li>
-							<li>
-								<a>注册</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
+    <% include header.ejs%>
 		<!-- Top content -->
 		<div class="top-content">
 			<div class="inner-bg">
@@ -60,7 +21,7 @@
 							<h1><strong>OASYSTEM    </strong>登录页面</h1>
 							<div class="description">
 								<p>
-									这是基于学生端的登录页面
+									这是基于教师端的登录页面
 								</p>
 							</div>
 						</div>
@@ -90,7 +51,10 @@
 										<input type="checkbox" />
 										记住密码
 									</div>
-									<input id="denglu" type="button" class="btn" value="登陆"/>
+									<button   id="denglu" type="button" class="btn">登录</button>
+									<div class="alert alert-danger" role="alert" id="cuowukuang" style="display: none">
+										密码不正确
+									</div>
 								</form>
 							</div>
 						</div>
@@ -108,6 +72,9 @@
 		</div>
 		<script type="text/javascript" src="/jquery-1.11.3.min.js"></script>
 		<script type="text/javascript">
+            $("input").focus(function(){
+                $("#cuowukuang").fadeOut();
+            });
             //用ajax提交表单
             $("#denglu").click(function(){
                 $.post("/dologin",{
@@ -115,11 +82,14 @@
                     "mima" : $("#mima").val()
                 },function(result){
                     if(result == "1"){
-                        alert("登陆成功");
+                        alert("登录成功！将自动跳转到首页");
+                        window.location = "/";
                     }else if(result == "-2"){
-                        alert("没有这个注册用户");
+                        $("#cuowukuang").fadeIn();
+                        $("#cuowukuang").html("该用户没有注册！");
                     }else if(result == "-1"){
-                        alert("密码不正确");
+                        $("#cuowukuang").fadeIn();
+                        $("#cuowukuang").html("密码不正确");
                     }
                 })
             });

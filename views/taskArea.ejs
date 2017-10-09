@@ -10,37 +10,7 @@
 	</head>
 
 	<body>
-		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="menu-nav">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-							<span class="sr-only">切换导航</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-					<a class="navbar-brand" href="#">教师培训系统</a>
-				</div>
-				<div class="navbar-collapse collapse">
-					<div class="user-info">
-						<ol class="breadcrumb">
-							<li class="active">
-								<a href="user-info.html">User（185分）</a>
-							</li>
-							<li>
-								<a href="#">论坛</a>
-							</li>
-							<li>
-								<a href="#">消息</a>
-							</li>
-							<li>
-								<a href="index.html">退出</a>
-							</li>
-						</ol>
-					</div>
-				</div>
-			</div>
-		</div>
+    <% include header.ejs%>
 		<div class="container">
 			<div class="task-area">
 				<div class="message-area">
@@ -49,7 +19,7 @@
 							<a href="#">当前位置：</a>
 						</li>
 						<li>
-							<a href="#">主页</a>
+							<a href="/">主页</a>
 						</li>
 						<li class="active">
 							<a href="#">课程管理</a>
@@ -66,7 +36,7 @@
 									<h3>JS实现京东无延迟菜单效果</h3>
 									<p class="lesson-detail">JS模拟京东商城无延迟菜单效果，学习菜单结构和样式处理</p>
 									<p>
-										<a href="#" class="btn btn-success role="button">进入学习</a>
+										<a href="http://www.imooc.com/learn/829" class="btn btn-success role="button">进入学习</a>
 										<!--<a href="#" class="btn btn-default" role="button">加入</a>-->
 									</p>
 								</div>

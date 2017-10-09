@@ -10,45 +10,7 @@
 		<link rel="stylesheet" href="css/style.css" />
 	</head>
 	<body style="height: 875px;">
-		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="menu-nav">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-							<span class="sr-only">切换导航</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-					<a class="navbar-brand" href="#">OA系统</a>
-				</div>
-				<div class="navbar-collapse collapse">
-					<div class="row">
-						<div class="col-lg-6 header-search">
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Search for...">
-								<span class="input-group-btn">
-       									 <button class="btn btn-default" type="button">Go!</button>
-      								</span>
-							</div>
-						</div>
-						<ul class="nav navbar-nav">
-							<li class="">
-								<a href="#ad-carousel">官网详情</a>
-							</li>
-							<li>
-								<a href="#summary-container">简述</a>
-							</li>
-							<li>
-								<a href="#" data-toggle="modal" data-target="#about-modal">登录</a>
-							</li>
-							<li>
-								<a>注册</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
+    <% include header.ejs%>
 		<!-- Top content -->
 		<div class="top-content">
 			<div class="inner-bg">
@@ -58,7 +20,7 @@
 							<h1><strong>OASYSTEM    </strong>注册页面</h1>
 							<div class="description">
 								<p>
-									这是基于学生端的注册页面
+									这是基于教师端的注册页面
 								</p>
 							</div>
 						</div>
@@ -84,7 +46,10 @@
 										<label class="sr-only"  for="form-password">密码</label>
 										<input type="password" id="mima" name="form-password" placeholder="请输入您的密码..." class="form-password form-control" id="form-password">
 									</div>
-									<input id="zhuce" type="button" value="注册"/>
+									<button id="zhuce"  type="button" class="btn">注册</button>
+									<div class="alert alert-danger" role="alert" id="cuowukuang" style="display: none">
+										用户名被占用，请更换
+									</div>
 								</form>
 							</div>
 						</div>
@@ -102,6 +67,9 @@
 		</div>
 		<script type="text/javascript" src="/jquery-1.11.3.min.js"></script>
 		<script type="text/javascript">
+            $("input").focus(function(){
+                $("#cuowukuang").fadeOut();
+            });
             //用ajax提交表单
             $("#zhuce").click(function(){
                 $.get("/doregist",{
@@ -109,9 +77,15 @@
                     "mima" : $("#mima").val()
                 },function(result){
                     if(result == "1"){
-                        alert("注册成功");
-                    }else{
-                        alert("注册失败");
+                        alert("注册成功！将自动跳转到首页");
+                        window.location = "/";
+                    }else if(result == "-1"){
+                        //用户名被占用
+                        $("#cuowukuang").fadeIn();
+                        $("#cuowukuang").html("用户名被占用啊！");
+                    }else if(result == "-3"){
+                        $("#cuowukuang").fadeIn();
+                        $("#cuowukuang").html("注册失败！");
                     }
                 })
             });

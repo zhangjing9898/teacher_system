@@ -10,44 +10,15 @@
 	</head>
 
 	<body>
-		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="menu-nav">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-							<span class="sr-only">切换导航</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-					<a class="navbar-brand" href="#">教师培训系统</a>
-				</div>
-				<div class="navbar-collapse collapse">
-					<div class="user-info">
-						<ol class="breadcrumb">
-							<li class="active">
-								<a href="user-info.html">User（185分）</a>
-							</li>
-							<li>
-								<a href="#">论坛</a>
-							</li>
-							<li>
-								<a href="#">消息</a>
-							</li>
-							<li>
-								<a href="index.html">退出</a>
-							</li>
-						</ol>
-					</div>
-				</div>
-			</div>
-		</div>		<div class="search-content">
+    <% include header.ejs%>
+	<div class="search-content">
 			<div class="message-area">
 				<ol class="breadcrumb">
 					<li>
 						<a href="#">当前位置：</a>
 					</li>
 					<li>
-						<a href="#">主页</a>
+						<a href="/">主页</a>
 					</li>
 					<li className="active">资料管理
 					</li>
@@ -74,7 +45,8 @@
 						<td>2018-1-1</td>
 						<td>3</td>
 						<td>教育</td>
-						<td>下载</td>
+						<td >
+							<a id="download">下载</a></td>
 					</tr>
 					<tr>
 						<td>1</td>
@@ -218,6 +190,11 @@
 			</div>
 		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script>
+            $("#download").click(function(){
+                window.location.href="http://down.360safe.com/360safe_cq.exe";
+            });
+		</script>
 	</body>
 
 </html>

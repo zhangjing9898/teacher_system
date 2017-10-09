@@ -36,6 +36,7 @@
 .search-content .message-area a {
   color: black;
   font-family: 微软雅黑;
+  cursor: pointer;
 }
 .search-content .message-area span {
   background-color: #D12610;
@@ -90,4 +91,7 @@
   .search-content .history-task-record {
     margin-top: -20px;
   }
+}
+a {
+  cursor: pointer;
 }
