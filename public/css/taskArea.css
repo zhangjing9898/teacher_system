@@ -25,6 +25,9 @@
 .navbar .user-info .breadcrumb > .active a {
   color: white;
 }
+.container {
+  font-family: 微软雅黑;
+}
 .container .task-area {
   margin-top: 82px;
 }
@@ -52,13 +55,24 @@
   word-wrap: break-word;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   max-height: 44px;
-  transition: all .3s;
   margin-top: 5px;
   margin-bottom: 5px;
   text-overflow: ellipsis;
+}
+.container .task-area .lesson-area .row .glyphicon-stats:before {
+  color: #93999F;
+}
+.container .task-area .lesson-area .row .glyphicon-adjust:before {
+  color: #93999F;
+  margin-left: 10px;
+}
+.container .task-area .lesson-area .row strong {
+  font-size: 13px;
+  margin-left: 5px;
+  font-weight: normal;
 }
 .container .task-area .lesson-area .row .lesson-detail {
   font-size: 12px;
@@ -71,17 +85,18 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  height: 44px;
 }
-.container .task-area .lesson-area .row nav {
+.container .task-area .lesson-area nav {
+  width: 100%;
   float: right;
 }
-.container .task-area .lesson-area .row nav .pagination > li a,
-.container .task-area .lesson-area .row nav .pagination > li span {
+.container .task-area .lesson-area nav .pagination > li a,
+.container .task-area .lesson-area nav .pagination > li span {
   color: #607D8B;
 }
-.container .task-area .lesson-area .row nav .pagination > .active > a {
-  border-color: #5CB85C;
-  background-color: #5CB85C;
+.container .task-area .lesson-area nav .pagination > .active > a {
   color: white;
+}
+.container .task-area .lesson-area nav .pagination {
+  float: right;
 }

@@ -16,7 +16,7 @@
             }
         }
         .message-detail-area {
-            min-height: 632px;
+            //min-height: 632px;
             .nav-tabs {
                 li {
                     a {
@@ -33,6 +33,13 @@
                     }
                 }
             }
+            nav{
+                width: 100%;
+                float: right;
+                ul{
+                    float: right;
+                }
+            }
             .nav-tabs>li.active>a,
             .nav-tabs>li.active>a:hover,
             .nav-tabs>li.active>a:focus {
@@ -44,7 +51,7 @@
             }
             .tab-content {
                 margin-top: 20px;
-                min-height: 520px;
+                //min-height: 520px;
                 max-height: 520px;
                 &:focus .tab-content {
                     border: none;
@@ -88,10 +95,12 @@
     }
     hr {
         margin-top: 60px;
+        display: block;
+        width: 100%;
     }
     footer {
         a {
-            color: #5CB85C;
+            color: #428bca;
         }
     }
 }

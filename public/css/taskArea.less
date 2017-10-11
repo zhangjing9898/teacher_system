@@ -1,5 +1,6 @@
 @import 'userHeader';
 .container {
+    font-family: 微软雅黑;
     .task-area {
         margin-top: 82px;
         .message-area {
@@ -29,13 +30,24 @@
                     overflow: hidden;
                     text-overflow: ellipsis;
                     display: -webkit-box;
-                    -webkit-line-clamp: 1;
+                    -webkit-line-clamp: 2;
                     -webkit-box-orient: vertical;
                     max-height: 44px;
-                    transition: all .3s;
                     margin-top: 5px;
                     margin-bottom: 5px;
                     text-overflow: ellipsis;
+                }
+                .glyphicon-stats:before {
+                    color: #93999F;
+                }
+                .glyphicon-adjust:before {
+                    color: #93999F;
+                    margin-left: 10px;
+                }
+                strong{
+                    font-size: 13px;
+                    margin-left: 5px;
+                    font-weight: normal;
                 }
                 .lesson-detail {
                     font-size: 12px;
@@ -48,25 +60,26 @@
                     display: -webkit-box;
                     -webkit-line-clamp: 2;
                     -webkit-box-orient: vertical;
-                    height: 44px;
                 }
-                nav {
-                    float: right;
-                    .pagination {
-                        &>li {
-                            a,
-                            span {
-                                color: #607D8B;
-                            }
-                        }
-                        &>.active {
-                            &>a {
-                                border-color: #5CB85C;
-                                background-color: #5CB85C;
-                                color: white;
-                            }
+            }
+            nav {
+                width: 100%;
+                float: right;
+                .pagination {
+                    &>li {
+                        a,
+                        span {
+                            color: #607D8B;
                         }
                     }
+                    &>.active {
+                        &>a {
+                            color: white;
+                        }
+                    }
+                }
+                .pagination {
+                    float: right;
                 }
             }
         }

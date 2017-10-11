@@ -39,9 +39,6 @@
 .message .container .message-area .breadcrumb > li + li:before {
   color: black;
 }
-.message .container .message-detail-area {
-  min-height: 632px;
-}
 .message .container .message-detail-area .nav-tabs li a {
   border-radius: 0;
   color: #999999;
@@ -54,6 +51,13 @@
   border-radius: 50%;
   background-color: #d12610;
 }
+.message .container .message-detail-area nav {
+  width: 100%;
+  float: right;
+}
+.message .container .message-detail-area nav ul {
+  float: right;
+}
 .message .container .message-detail-area .nav-tabs > li.active > a,
 .message .container .message-detail-area .nav-tabs > li.active > a:hover,
 .message .container .message-detail-area .nav-tabs > li.active > a:focus {
@@ -65,7 +69,6 @@
 }
 .message .container .message-detail-area .tab-content {
   margin-top: 20px;
-  min-height: 520px;
   max-height: 520px;
 }
 .message .container .message-detail-area .tab-content:focus .tab-content {
@@ -97,7 +100,9 @@
 }
 .message hr {
   margin-top: 60px;
+  display: block;
+  width: 100%;
 }
 .message footer a {
-  color: #5CB85C;
+  color: #428bca;
 }

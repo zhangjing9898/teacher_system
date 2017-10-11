@@ -7,6 +7,9 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/search.css" />
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script src="/js/underscore-noflect.js"></script>
 	</head>
 
 	<body>
@@ -25,8 +28,8 @@
 				</ol>
 			</div>
 			<div class="history-task-record">
-				<p class="title">历史任务:</p>
-				<table class="table table-hover">
+				<p class="title">相关资料:</p>
+				<table class="table table-hover" id="tableAll">
 					<tr>
 						<th>资料编号</th>
 						<th>资料标题</th>
@@ -37,117 +40,6 @@
 						<th>所属类别</th>
 						<th>操作</th>
 					</tr>
-					<tr>
-						<td>1</td>
-						<td>XXXLinux服务器管理与配置</td>
-						<td>word文档</td>
-						<td>2017-5-23</td>
-						<td>2018-1-1</td>
-						<td>3</td>
-						<td>教育</td>
-						<td >
-							<a id="download">下载</a></td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>XXXLinux服务器管理与配置</td>
-						<td>word文档</td>
-						<td>2017-5-23</td>
-						<td>2018-1-1</td>
-						<td>3</td>
-						<td>教育</td>
-						<td>下载</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>XXXLinux服务器管理与配置</td>
-						<td>word文档</td>
-						<td>2017-5-23</td>
-						<td>2018-1-1</td>
-						<td>3</td>
-						<td>教育</td>
-						<td>下载</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>XXXLinux服务器管理与配置</td>
-						<td>word文档</td>
-						<td>2017-5-23</td>
-						<td>2018-1-1</td>
-						<td>3</td>
-						<td>教育</td>
-						<td>下载</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>XXXLinux服务器管理与配置</td>
-						<td>word文档</td>
-						<td>2017-5-23</td>
-						<td>2018-1-1</td>
-						<td>3</td>
-						<td>教育</td>
-						<td>下载</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>XXXLinux服务器管理与配置</td>
-						<td>word文档</td>
-						<td>2017-5-23</td>
-						<td>2018-1-1</td>
-						<td>3</td>
-						<td>教育</td>
-						<td>下载</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>XXXLinux服务器管理与配置</td>
-						<td>word文档</td>
-						<td>2017-5-23</td>
-						<td>2018-1-1</td>
-						<td>3</td>
-						<td>教育</td>
-						<td>下载</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>XXXLinux服务器管理与配置</td>
-						<td>word文档</td>
-						<td>2017-5-23</td>
-						<td>2018-1-1</td>
-						<td>3</td>
-						<td>教育</td>
-						<td>下载</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>XXXLinux服务器管理与配置</td>
-						<td>word文档</td>
-						<td>2017-5-23</td>
-						<td>2018-1-1</td>
-						<td>3</td>
-						<td>教育</td>
-						<td>下载</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>XXXLinux服务器管理与配置</td>
-						<td>word文档</td>
-						<td>2017-5-23</td>
-						<td>2018-1-1</td>
-						<td>3</td>
-						<td>教育</td>
-						<td>下载</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>XXXLinux服务器管理与配置</td>
-						<td>word文档</td>
-						<td>2017-5-23</td>
-						<td>2018-1-1</td>
-						<td>3</td>
-						<td>教育</td>
-						<td>下载</td>
-					</tr>
 				</table>
 				<nav aria-label="...">
 					<ul class="pagination">
@@ -157,19 +49,19 @@
 						<li class="active">
 							<a href="#">1 <span class="sr-only">(current)</span></a>
 						</li>
-						<li class="">
-							<a href="#">2 <span class="sr-only">(current)</span></a>
+						<li class="disabled">
+							<a href="#" >2 <span class="sr-only">(current)</span></a>
 						</li>
-						<li class="">
+						<li class="disabled">
 							<a href="#">3<span class="sr-only">(current)</span></a>
 						</li>
-						<li class="">
+						<li class="disabled">
 							<a href="#">4 <span class="sr-only">(current)</span></a>
 						</li>
-						<li class="">
+						<li class="disabled">
 							<a href="#">5<span class="sr-only">(current)</span></a>
 						</li>
-						<li>
+						<li class="disabled">
 							<a href="#" aria-label="Next">
 								<span aria-hidden="true">&raquo;</span>
 							</a>
@@ -187,14 +79,54 @@
 					<p class="pull-left">&copy; 成都师范学院</p>
 				</footer>
 			</div>
-			</div>
-		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script>
-            $("#download").click(function(){
-                window.location.href="http://down.360safe.com/360safe_cq.exe";
-            });
-		</script>
+	</div>
+	<!--前端模板-->
+	<script type="text/template" id="resourceTable">
+			<tr>
+				<td>{{=dataNum}}</td>
+				<td>{{=dataTitle}}</td>
+				<td>{{=dataForm}}</td>
+				<td>{{=upDate}}</td>
+				<td>{{=endDate}}</td>
+				<td>{{=downloadNum}}</td>
+				<td>{{=category}}</td>
+				<td>
+					<a href="{{=optionPath}}">{{=option}}</a>
+				</td>
+			</tr>
+	</script>
+
+	<script type="text/javascript">
+		var $tableAll=$("#tableAll");
+		//得到模板函数
+		var compiled=_.template($("#resourceTable").html());
+
+		//ajax服务，获取信息
+		$.ajax({
+			"url":"/js/data/data.json",
+			"type":"get",
+			"success":function (result) {
+                //result是一个数组
+//                console.log(Array.isArray(result));
+//				console.log(result);
+                iterator(0);
+                //迭代器
+				//这里防止ajax异步，必须使用迭代器
+                function iterator(i) {
+                    if (i == result.length) {
+                        //在这里书写请求完毕之后做的事情
+                        return;  //不用继续迭代了
+                    }
+                    console.log(result[i]);
+					//组装模板
+					var htmlstring = compiled(result[i]);
+					//添加DOM
+					$("#tableAll").append($(htmlstring));
+					iterator(i + 1);
+                }
+            }
+		})
+	</script>
 	</body>
 
 </html>
