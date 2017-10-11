@@ -39,9 +39,6 @@
 .user-info .container .message-area .breadcrumb > li + li:before {
   color: black;
 }
-.user-info .container .message-detail-area {
-  min-height: 632px;
-}
 .user-info .container .message-detail-area .nav-tabs li a {
   border-radius: 0;
   color: #999999;
@@ -65,8 +62,7 @@
 }
 .user-info .container .message-detail-area .tab-content {
   margin-top: 20px;
-  min-height: 520px;
-  max-height: 520px;
+  min-height: 320px;
 }
 .user-info .container .message-detail-area .tab-content:focus .tab-content {
   border: none;
@@ -77,4 +73,7 @@
   padding: 10px 22px;
   font-family: 微软雅黑;
   font-size: 15px;
+}
+.user-info .container .message-detail-area .tab-content .tab-pane .list-group .confirmBtn {
+  float: right;
 }

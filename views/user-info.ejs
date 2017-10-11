@@ -6,6 +6,9 @@
 		<title>用户个人资料</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/user-info.css" />
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="/js/underscore-noflect.js"></script>
 	</head>
 
 	<body class="user-info">
@@ -20,7 +23,7 @@
 						<a href="/">主页</a>
 					</li>
 					<li className="active">
-						<a href="#">课程管理</a>
+						<a href="#">个人信息</a>
 					</li>
 				</ol>
 			</div>
@@ -34,92 +37,17 @@
 				<div class="tab-content">
 					<div class="tab-pane row-fluid active" id="tab1">
 						<div class="list-group">
-							<form class="form-horizontal">
+							<form class="form-horizontal" id="userinfotable">
 								<div class="form-group">
-									<label for="inputEmail3" class="col-sm-2 control-label">账户名</label>
+									<label for="input" class="col-sm-2 control-label">账户名</label>
 									<div class="col-sm-10">
-										<input type="email" class="form-control"  placeholder="" value="张靖bibib">
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
-									<div class="col-sm-10">
-										<input type="email" class="form-control"  placeholder="Your name">
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="inputPassword3" class="col-sm-2 control-label">学号</label>
-									<div class="col-sm-10">
-										<input type="password" class="form-control"  placeholder="Student ID">
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="inputPassword3" class="col-sm-2 control-label">班级</label>
-									<div class="col-sm-10">
-										<input type="password" class="form-control"  placeholder="Class name">
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="inputPassword3" class="col-sm-2 control-label">学校</label>
-									<div class="col-sm-10">
-										<input type="password" class="form-control"  placeholder="College name">
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="inputPassword3" class="col-sm-2 control-label">电话</label>
-									<div class="col-sm-10">
-										<input class="form-control"  placeholder="Telephone number" value="13648030827(已验证)">
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="inputPassword3" class="col-sm-2 control-label">性别</label>
-									<div class="col-sm-10">
-										<select class="form-control">
-											<option>男</option>
-											<option selected="selected">女</option>
-										</select>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="inputPassword3" class="col-sm-2 control-label">入学年份</label>
-									<div class="col-sm-10">
-										<select class="form-control">
-											<option>2013</option>
-											<option>2014</option>
-											<option  selected="selected">2015</option>
-											<option>2016</option>
-											<option>2017</option>
-											<option>2018</option>
-										</select>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="inputPassword3" class="col-sm-2 control-label">学历</label>
-									<div class="col-sm-10">
-										<select class="form-control">
-											<option selected="selected">本科</option>
-											<option>专科</option>
-										</select>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="inputPassword3" class="col-sm-2 control-label">专业</label>
-									<div class="col-sm-10">
-										<select class="form-control">
-											<option selected="selected">信息工程</option>
-											<option>软件工程</option>
-											<option>网络工程</option>
-											<option>物联网工程</option>
-											<option>计算机科学与技术专业</option>
-										</select>
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-offset-2 col-sm-10">
-										<button class="btn btn-success modify-btn" type="submit">修改资料</button>
+										<input id="dengluming" type="text" class="form-control" disabled placeholder="" value="<%= username %>">
 									</div>
 								</div>
 							</form>
+							<div class="confirmBtn">
+								<button id="updataBtn" class="btn btn-success modify-btn" type="submit">修改资料</button>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -135,8 +63,85 @@
 				</footer>
 			</div>
 		</div>
-		<script src="js/jquery-1.11.1.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
+		<script type="text/template" id="moban">
+			<div class="form-group">
+				<label for="input" class="col-sm-2 control-label">教师工号</label>
+				<div class="col-sm-10">
+					<input id="teacherId" type="text" class="form-control"  value="{{=teacherId}}" placeholder="请输入您的教师工号">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="input" class="col-sm-2 control-label">学校名称</label>
+				<div class="col-sm-10">
+					<input id="colleageName" type="text" class="form-control"  value="{{=collegeName}}" placeholder="请输入您所在学校名称">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="input" class="col-sm-2 control-label">联系电话</label>
+				<div class="col-sm-10">
+					<input id="telNum" type="text" class="form-control"  value="{{=telNum}}" placeholder="请输入您的联系电话">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="input" class="col-sm-2 control-label">性别</label>
+				<div class="col-sm-10">
+					<input id="sex" type="text" class="form-control"  value="{{=sex}}" placeholder="请输入您的性别">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputPassword3" class="col-sm-2 control-label">所授课程</label>
+				<div class="col-sm-10">
+					<input id="lesson" type="text" class="form-control"  value="{{=lesson}}" placeholder="请输入您所授课程">
+				</div>
+			</div>
+		</script>
+		<script type="text/javascript">
+
+			//得到模板
+			var $userinfotable=$("#userinfotable");
+			//得到模板函数
+			var compiled=_.template($("#moban").html());
+			var dengluming=$("#dengluming").val();
+
+//            $('body').append(_.template($('#tpl').html(), data));
+			console.log(dengluming);
+			//请求数据
+//            getPage(0);
+            //请求分页的说说信息
+                //将现在的页面内容清除
+                $.ajax({
+                    "url": "/showuserinfo?dengluming=" + dengluming,
+                    "type": "get",
+                    "success": function (result) {
+                        console.log(result[0]);
+                        var htmlstring = compiled(result[0]);
+                        //添加DOM
+                        $("#userinfotable").append($(htmlstring));
+                    }
+                });
+
+			//用ajax提交表单
+			$("#updataBtn").click(function () {
+			    console.log("点击更新按钮！");
+				$.get("/updata",{
+				    "dengluming":$("#dengluming").val(),
+					"teacherId":$("#teacherId").val(),
+					"collegeName":$("#colleageName").val(),
+					"telNum":$("#telNum").val(),
+					"sex":$("#sex").val(),
+					"lesson":$("#lesson").val()
+				},function (result) {
+					if(result=="1"){
+					    alert("修改成功！，将自动跳转到首页");
+                        window.location = "/";
+					}else{
+                        alert("修改失败！，将自动跳转到首页");
+                        window.location = "/";
+					}
+                })
+            });
+
+		</script>
 	</body>
 
 </html>

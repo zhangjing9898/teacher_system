@@ -31,17 +31,17 @@
                 }else{
                 %>
                 <ul class="nav navbar-nav">
-                    <li class="active">
+                    <li <%if(active=="首页"){%> class="active" <%}%>>
                         <a href="/">官网详情</a>
                     </li>
                     <li>
                         <a href="#summary-container">简述</a>
                     </li>
-                    <li>
-                        <a href="login">登录</a>
+                    <li <%if(active=="注册"){%> class="active" <%}%>>
+                        <a href="/regist">注册</a>
                     </li>
-                    <li>
-                        <a href="regist">注册</a>
+                    <li <%if(active=="登录"){%> class="active" <%}%>>
+                        <a href="/login">登录</a>
                     </li>
                 </ul>
                 <%
