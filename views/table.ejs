@@ -13,6 +13,9 @@
 				float: left;
 			}
 		</style>
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script src="/js/underscore-noflect.js"></script>
 	</head>
 
 	<body>
@@ -36,50 +39,17 @@
 					<canvas id="line" height="450" width="600"></canvas>
 					<canvas id="canvas" height="450" width="450"></canvas>
 				</div>
-					<table class="table table-bordered">
-					<tr>
-						<th>日期</th>
-						<th>教师姓名</th>
-						<th>教师工号</th>
-						<th>当日学习时长</th>
-						<th>培训科目</th>
-						<th>总学习时长</th>
-						<th>操作</th>
-					</tr>
-					<tr>
-						<td>2017年2月10日</td>
-						<td>哈利</td>
-						<td>15310920205</td>
-						<td>1小时10分</td>
-						<td>安全守则</td>
-						<td>35小时</td>
-						<td>
-							<a>查看详情</a>	
-						</td>
-					</tr>
-					<tr>
-						<td>2017年2月10日</td>
-						<td>哈利</td>
-						<td>15310920205</td>
-						<td>1小时10分</td>
-						<td>安全守则</td>
-						<td>35小时</td>
-						<td>
-							<a>查看详情</a>	
-						</td>
-					</tr>
-					<tr>
-						<td>2017年2月10日</td>
-						<td>哈利</td>
-						<td>15310920205</td>
-						<td>1小时10分</td>
-						<td>安全守则</td>
-						<td>35小时</td>
-						<td>
-							<a>查看详情</a>	
-						</td>
-					</tr>
-			</table>
+					<table class="table table-bordered" id="tableArea">
+						<tr>
+							<th>日期</th>
+							<th>教师姓名</th>
+							<th>教师工号</th>
+							<th>当日学习时长</th>
+							<th>培训科目</th>
+							<th>总学习时长</th>
+							<th>操作</th>
+						</tr>
+					</table>
 			</div>
 			<hr class="divider task-divider" />
 			<div class="container summary">
@@ -91,10 +61,51 @@
 				</footer>
 			</div>
 		</div>
-
-		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<!--前端模板-->
+		<script type="text/template" id="lessonTable">
+			<tr>
+				<td>{{=tableDate}}</td>
+				<td>{{=teacherName}}</td>
+				<td>{{=teacherNum}}</td>
+				<td>{{=studyTime}}</td>
+				<td>{{=lessonCategory}}</td>
+				<td>{{=allTime}}</td>
+				<td>
+					<a>查看详情</a>
+				</td>
+			</tr>
+		</script>
 		<script>
+			var $tableArea=$("#tableArea");
+            //得到模板函数
+            var compiled=_.template($("#lessonTable").html());
+
+            //ajax服务，获取信息
+            $.ajax({
+                "url":"/js/data/table.json",
+                "type":"get",
+                "success":function (result) {
+                    //result是一个数组
+//                console.log(Array.isArray(result));
+//				console.log(result);
+                    iterator(0);
+                    //迭代器
+                    //这里防止ajax异步，必须使用迭代器
+                    function iterator(i) {
+                        if (i == result.length) {
+                            //在这里书写请求完毕之后做的事情
+                            return;  //不用继续迭代了
+                        }
+                        console.log(result[i]);
+                        //组装模板
+                        var htmlstring = compiled(result[i]);
+                        //添加DOM
+                        $("#tableArea").append($(htmlstring));
+                        iterator(i + 1);
+                    }
+                }
+            })
+
 			var lineChartData = {
 				labels: ["", "", "", "", "", "", "","","","","",""],
 				datasets: [{

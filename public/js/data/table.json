@@ -1,0 +1,27 @@
+
+[
+  {
+    "tableDate":"2017年10月2日",
+    "teacherName":"Mike",
+    "teacherNum":"15310920205",
+    "studyTime":"1小时10分",
+    "lessonCategory":"安全手册",
+    "allTime":"35小时"
+  },
+  {
+    "tableDate":"2015年1月12日",
+    "teacherName":"Emma",
+    "teacherNum":"15310910234",
+    "studyTime":"10分",
+    "lessonCategory":"Linux管理",
+    "allTime":"3小时"
+  },
+  {
+    "tableDate":"2016年4月21日",
+    "teacherName":"Harry",
+    "teacherNum":"10920920035",
+    "studyTime":"4小时10分",
+    "lessonCategory":"中国古典文学",
+    "allTime":"123小时"
+  }
+]
