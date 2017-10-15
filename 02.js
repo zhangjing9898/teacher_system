@@ -124,7 +124,8 @@ app.post("/dologin",function(req,res,next){
 app.get("/404",function (req,res,next) {
     res.render("404",{
         "login": req.session.login == "1" ? true : false,
-        "username": req.session.login == "1" ? req.session.username : ""
+        "username": req.session.login == "1" ? req.session.username : "",
+        "active": "404"
     });
 })
 
