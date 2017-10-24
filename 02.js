@@ -3,7 +3,8 @@ var app=express();
 session = require('express-session');
 var formidable=require("formidable");
 var db=require("./model/db");
-
+var path = require("path");
+var fs = require("fs");
 var md5=require("./model/md5");
 
 
@@ -116,7 +117,6 @@ app.post("/dologin",function(req,res,next){
             }
         });
     });
-
     return;
 });
 
@@ -235,12 +235,120 @@ app.get("/updata",function(req,res,next){
 app.get("/showuserinfo",function (req,res,next) {
     var dengluming=req.query.dengluming;
     db.find("post",{"dengluming":dengluming},function (err,result) {
+        console.log(result);
         if(err || result.length == 0){
             res.json("");
             return;
         }
         res.json(result);
     })
-})
+});
+
+//显示课程
+app.get("/showLesson",function (req,res,next) {
+    var dengluming=req.session.username
+    db.find("lesson",{"dengluming":dengluming},function (err,result) {
+        // console.log(result);
+        if(err || result.length == 0){
+            res.json("");
+            return;
+        }
+        res.json(result);
+    })
+});
+
+//增加课程
+app.get("/updataLesson",function(req,res,next){
+    var dengluming=req.query.dengluming
+    var lessonTitle = req.query.lessonTitle;
+    var lessonDetail = req.query.lessonDetail;
+    var lessonLevel = req.query.lessonLevel;
+    var lessonPopulation = req.query.lessonPopulation;
+    var lessonPath = req.query.lessonPath;
+    var lessonImg=req.query.lessonImg==null?"img/lesson/react.jpg":req.query.lessonImg
+    db.find("lesson",{"dengluming":dengluming},function (err,result) {
+
+        db.insertOne("lesson",{
+            "dengluming": dengluming,
+            "lessonImg":lessonImg,
+            "lessonTitle" : lessonTitle,
+            "lessonDetail":lessonDetail,
+            "lessonLevel":lessonLevel,
+            "lessonPopulation":lessonPopulation,
+            "lessonPath":lessonPath
+        },function(err,result){
+            if(err){
+                res.send("-1");
+                return;
+            }
+            res.send("1"); //更改成功
+        })
+    });
+});
+
+
+//管理员登录后的界面
+app.get("/managePage",function (req,res,next) {
+    //必须保证登陆
+    // if (req.session.login != "1") {
+    //     res.end("非法闯入，这个页面只能管理员才能访问！");
+    //     return;
+    // }
+    res.render("ManagePage",{
+        "login": req.session.login == "1" ? true : false,
+        "username": req.session.login == "1" ? req.session.username : ""
+    });
+});
+
+//管理员登录
+app.get("/managerLogin",function(req,res,next){
+    res.render("managerLogin",{
+        "login": req.session.login == "1" ? true : false,
+        "username": req.session.login == "1" ? req.session.username : "",
+        "active": "管理员登录"
+    });
+});
+
+//登录
+app.post("/doManager",function(req,res,next){
+    var form = new formidable.IncomingForm();
+
+    form.parse(req, function(err, fields, files) {
+        var dengluming = fields.dengluming;
+        var mima = fields.mima;
+
+        //检索数据库，按登录名检索数据库，查看密码是否匹配
+        db.find("manager",{"dengluming":dengluming},function(err,result){
+            if(result.length == 0){
+                res.send("-2");  //-2没有这个人
+                return;
+            }
+            var shujukuzhongdemima = result[0].mima;
+            //要对用户这次输入的密码，进行相同的加密操作。然后与
+            //数据库中的密码进行比对
+            if(mima == shujukuzhongdemima){
+                req.session.login = "1";
+                req.session.username = dengluming;
+                res.send("1");  //成功
+            }else{
+                res.send("-1"); //密码不匹配
+            }
+        });
+    });
+    return;
+});
+
+//上传课程图片
+//设置头像
+app.post("/dosetavatar", function (req, res, next) {
+    //必须保证登陆
+    // if (req.session.login != "1") {
+    //     res.end("非法闯入，这个页面要求登陆！");
+    //     return;
+    // }
+
+    var form = new formidable.IncomingForm();
+    form.uploadDir = path.normalize(__dirname + "/../public/img/lesson");
+});
 
 app.listen(3000);

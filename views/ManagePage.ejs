@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
+    <link rel="stylesheet" href="css/manageStyle.css">
+    <link rel="stylesheet" href="css/fileinput.min.css" />
+    <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/fileinput.min.js"></script>
+</head>
+
+<body>
+<div id="wrapper">
+    <div class="overlay"></div>
+    <!-- Sidebar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+        <ul class="nav sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="#">
+                  管理员：  <%= username %>
+                </a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-fw fa-home"></i> 管理员信息</a>
+            </li>
+            <li id="notion-message-btn">
+                <a href="#"><i class="fa fa-fw fa-folder"></i> 系统通知</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-fw fa-file-o"></i> 教师管理</a>
+            </li>
+            <li id="lesson-manage-btn">
+                <a href="#"><i class="fa fa-fw fa-cog"></i> 课程管理</a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> 资料上传<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header"></li>
+                    <li>
+                        <a href="#">图片上传</a>
+                    </li>
+                    <li>
+                        <a href="#">Word文件上传</a>
+                    </li>
+                    <li>
+                        <a href="#">Excel文件上传</a>
+                    </li>
+                    <li>
+                        <a href="#">Powerpoint文件上传</a>
+                    </li>
+                    <li>
+                        <a href="#">压缩包上传</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-fw fa-bank"></i> Page four</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-fw fa-dropbox"></i> Page 5</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-fw fa-twitter"></i> Last page</a>
+            </li>
+        </ul>
+    </nav>
+    <div id="page-content-wrapper">
+        <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+            <span class="hamb-top"></span>
+            <span class="hamb-middle"></span>
+            <span class="hamb-bottom"></span>
+        </button>
+        <div class="container">
+            <div id="lesson-manage" style="display: none;">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">教师名称</label>
+                        <input type="text" class="form-control" id="teacher_name" placeholder="Teacher Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">课程名称</label>
+                        <input type="text" class="form-control" id="lesson_name" placeholder="Lesson Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">课程简介</label>
+                        <input type="text" class="form-control" id="lesson_detail" placeholder="Lesson Detail">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">课程难度</label>
+                        <input type="text" class="form-control" id="lesson_level" placeholder="Lesson Level">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">课程学习人数</label>
+                        <input type="text" class="form-control" id="student_number" placeholder="Student Number">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">课程视频链接</label>
+                        <input type="text" class="form-control" id="lesson_url" placeholder="Lesson_url">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">视频上传</label>
+                        <input type="file">
+                        <p class="help-block">所录制的视频在这里上传</p>
+                    </div>
+                    <button type="submit" id="manageSubmitBtn" class="btn btn-default">提交</button>
+                </form>
+            </div>
+            <div id="resource-upload" style="display: none;">
+                <div class="container kv-main">
+                    <br>
+                    <form enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="notion-message" >
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">系统消息</label>
+                        <input type="text" class="form-control" id="lesson_name" placeholder="Lesson Name">
+                    </div>
+                    <button type="submit"  class="btn btn-default">提交</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $("#file-1").fileinput({
+        uploadUrl: "http://127.0.0.1:3000/download/"+filename,
+        allowedFileExtensions: [],
+        overwriteInitial: false,
+        maxFileSize: 1000,
+        maxFilesNum: 10,
+        slugCallback: function(filename) {
+            return filename.replace('(', '_').replace(']', '_');
+        }
+    });
+    $(document).ready(function() {
+        var trigger = $('.hamburger'),
+            overlay = $('.overlay'),
+            isClosed = false;
+
+        trigger.click(function() {
+            hamburger_cross();
+        });
+
+        function hamburger_cross() {
+            if(isClosed == true) {
+                overlay.hide();
+                trigger.removeClass('is-open');
+                trigger.addClass('is-closed');
+                isClosed = false;
+            } else {
+                overlay.show();
+                trigger.removeClass('is-closed');
+                trigger.addClass('is-open');
+                isClosed = true;
+            }
+        }
+
+        $('[data-toggle="offcanvas"]').click(function() {
+            $('#wrapper').toggleClass('toggled');
+        });
+        $('#lesson-manage-btn').click(function(){
+            $("#lesson-manage").show();
+            $("#lesson-manage").siblings().hide();
+        });
+        $('.dropdown li').click(function(){
+            $('#resource-upload').show();
+            $("#resource-upload").siblings().hide();
+        });
+        $('#notion-message-btn').click(function(){
+            $("#notion-message").show();
+            $('#notion-message').siblings().hide();
+        });
+
+        //获取val
+        $("#manageSubmitBtn").click(function () {
+            console.log("提交！");
+            $.get("/updataLesson",{
+                "dengluming":$("#teacher_name").val(),
+                "lessonTitle":$("#lesson_name").val(),
+                "lessonDetail":$("#lesson_detail").val(),
+                "lessonLevel":$("#lesson_level").val(),
+                "lessonPopulation":$("#student_number").val(),
+                "lessonPath":$("#lesson_url").val()
+            },function (result) {
+                if(result=="1"){
+                    alert("提交成功！，将自动跳转到首页");
+                    window.location = "/";
+                }else{
+                    alert("提交失败！，将自动跳转到首页");
+                    window.location = "/";
+                }
+            })
+        })
+    });
+</script>
+</body>
+
+</html>

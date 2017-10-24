@@ -10,8 +10,8 @@
 		<link rel="stylesheet" href="css/style.css" />
 		<script type="text/javascript" src="js/jquery-1.11.1.min.js" ></script>
 		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+		<script src="/js/underscore-noflect.js"></script>
 	</head>
-
 		<body>
 		<% include header.ejs%>
 		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -85,7 +85,7 @@
 				<div class="container summary">
 					<div class="task-area-title">
 						<img class="info-img" src="img/info.png" />
-						新任务发布啦~
+						新消息发布啦~
 					</div>
 					<hr class="divider" />
 					<div class="row">
@@ -135,6 +135,26 @@
 						</div>
 					</div>
 					<hr class="divider" />
+					<div class="task-area-title">
+						<img class="info-img" src="img/video.png" />
+						精品课程
+					</div>
+					<div class="row lessonAreaForm" id="lessonArea">
+					</div>
+					<!--<hr class="divider" />-->
+					<div class="task-area-title">
+						<img class="info-img" src="img/video.png" />
+						推荐课程
+					</div>
+					<div class="row lessonAreaForm" id="lessonArea2">
+					</div>
+					<!--<hr class="divider" />-->
+					<div class="task-area-title">
+						<img class="info-img" src="img/video.png" />
+						热门课程
+					</div>
+					<div class="row lessonAreaForm" id="lessonArea3">
+					</div>
 					<footer>
 						<p class="pull-right">
 							<a href="#top">回到顶部</a>
@@ -142,12 +162,101 @@
 						<p class="pull-left">&copy; 成都师范学院</p>
 					</footer>
 				</div>
-				
 
-				<!--<script type="text/babel">
-			ReactDOM.render(
-			<h1>张靖</h1>, document.getElementById('example') );
-		</script>-->
+	<script type="text/template" id="lessonTemplate">
+		<div class="col-sm-6 col-md-3">
+			<div class="thumbnail">
+				<img src="{{=lessonImg}}" alt="...">
+				<div class="caption">
+					<h3>{{=lessonTitle}}</h3>
+					<span class="glyphicon glyphicon-stats"></span><strong>{{=lessonLevel}}</strong>
+					<span class="glyphicon glyphicon-adjust"></span><strong>{{=lessonPopulation}}</strong>
+					<p class="lesson-detail">{{=lessonDetail}}</p>
+					<a href="{{=lessonPath}}" class="btn btn-primary" role="button" >进入学习</a>
+				</div>
+			</div>
+		</div>
+	</script>
+	<script type="text/javascript">
+        var $lessonArea=$("#lessonArea");
+        var $lessonArea2=$("#lessonArea2");
+        var $lessonArea3=$("#lessonArea3");
+        //得到模板函数
+        var compiled=_.template($("#lessonTemplate").html());
+
+        //ajax服务，获取信息
+        $.ajax({
+            "url":"/js/data/lessonArea1.json",
+            "type":"get",
+            "success":function (result) {
+                //result是一个数组
+//                console.log(Array.isArray(result));
+//				console.log(result);
+                iterator(0);
+                //迭代器
+                //这里防止ajax异步，必须使用迭代器
+                function iterator(i) {
+                    if (i == result.length) {
+                        //在这里书写请求完毕之后做的事情
+                        return;  //不用继续迭代了
+                    }
+                    console.log(result[i]);
+                    //组装模板
+                    var htmlstring = compiled(result[i]);
+                    //添加DOM
+                    $("#lessonArea").append($(htmlstring));
+                    iterator(i + 1);
+                }
+            }
+        })
+        $.ajax({
+            "url":"/js/data/lessonArea2.json",
+            "type":"get",
+            "success":function (result) {
+                //result是一个数组
+//                console.log(Array.isArray(result));
+//				console.log(result);
+                iterator(0);
+                //迭代器
+                //这里防止ajax异步，必须使用迭代器
+                function iterator(i) {
+                    if (i == result.length) {
+                        //在这里书写请求完毕之后做的事情
+                        return;  //不用继续迭代了
+                    }
+                    console.log(result[i]);
+                    //组装模板
+                    var htmlstring = compiled(result[i]);
+                    //添加DOM
+                    $("#lessonArea2").append($(htmlstring));
+                    iterator(i + 1);
+                }
+            }
+        })
+        $.ajax({
+            "url":"/js/data/lessonArea3.json",
+            "type":"get",
+            "success":function (result) {
+                //result是一个数组
+//                console.log(Array.isArray(result));
+//				console.log(result);
+                iterator(0);
+                //迭代器
+                //这里防止ajax异步，必须使用迭代器
+                function iterator(i) {
+                    if (i == result.length) {
+                        //在这里书写请求完毕之后做的事情
+                        return;  //不用继续迭代了
+                    }
+                    console.log(result[i]);
+                    //组装模板
+                    var htmlstring = compiled(result[i]);
+                    //添加DOM
+                    $("#lessonArea3").append($(htmlstring));
+                    iterator(i + 1);
+                }
+            }
+        })
+	</script>
 		</body>
-
 </html>
