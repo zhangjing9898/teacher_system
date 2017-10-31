@@ -125,26 +125,26 @@
                 <form>
                     <div class="form-group">
                         <label for="exampleInputEmail1">系统消息</label>
-                        <input type="text" class="form-control" id="lesson_name" placeholder="Lesson Name">
+                        <input type="text" class="form-control" id="notionContent" placeholder="Information">
                     </div>
-                    <button type="submit"  class="btn btn-default">提交</button>
+                    <button type="submit"  class="btn btn-primary" id="notionSubmit">提交</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<script type="text/javascript">
-    $("#file-1").fileinput({
-        uploadUrl: "http://127.0.0.1:3000/download/"+filename,
-        allowedFileExtensions: [],
-        overwriteInitial: false,
-        maxFileSize: 1000,
-        maxFilesNum: 10,
-        slugCallback: function(filename) {
-            return filename.replace('(', '_').replace(']', '_');
-        }
-    });
+<script>
+//    $("#file-1").fileinput({
+//        uploadUrl: "#",
+//        allowedFileExtensions: [],
+//        overwriteInitial: false,
+//        maxFileSize: 1000,
+//        maxFilesNum: 10,
+//        slugCallback: function(filename) {
+//            return filename.replace('(', '_').replace(']', '_');
+//        }
+//    });
     $(document).ready(function() {
         var trigger = $('.hamburger'),
             overlay = $('.overlay'),
@@ -194,6 +194,22 @@
                 "lessonLevel":$("#lesson_level").val(),
                 "lessonPopulation":$("#student_number").val(),
                 "lessonPath":$("#lesson_url").val()
+            },function (result) {
+                if(result=="1"){
+                    alert("提交成功！，将自动跳转到首页");
+                    window.location = "/";
+                }else{
+                    alert("提交失败！，将自动跳转到首页");
+                    window.location = "/";
+                }
+            })
+        });
+
+        //上传通知
+        $("#notionSubmit").click(function () {
+            console.log("提交通知");
+            $.get("/addNotion",{
+                "notionContent":$("#notionContent").val(),
             },function (result) {
                 if(result=="1"){
                     alert("提交成功！，将自动跳转到首页");

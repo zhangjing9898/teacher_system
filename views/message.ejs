@@ -6,6 +6,9 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/message.css" />
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script src="/js/underscore-noflect.js"></script>
 	</head>
 	<body class="message">
 		<% include header.ejs%>
@@ -41,26 +44,8 @@
 						</div>
 					</div>
 					<div class="tab-pane row-fluid" id="tab2">
-						<div class="list-group">
-							<button type="button" class="list-group-item">童浩老师录制的《操作系统1》视频培训
-								<span class="badge">未读</span>
-							</button>
-							<button type="button" class="list-group-item">童浩老师录制的《操作系统2》视频培训
-								<span class="badge">未读</span>
-							</button>
-							<button type="button" class="list-group-item">童浩老师录制的《操作系统3》视频培训
-								<span class="badge">未读</span>
-							</button>
-							<button type="button" class="list-group-item">童浩老师录制的《操作系统4》视频培训
-								<span class="badge">未读</span>
-							</button>
-							<button type="button" class="list-group-item">java web培训视频已经录制成功了~
-								<span class="badge">未读</span>
-							</button>
-							<button type="button" class="list-group-item">安全守则培训资料出来啦~</button>
-							<button type="button" class="list-group-item">安全守则培训资料出来啦~</button>
-							<button type="button" class="list-group-item">安全守则培训资料出来啦~</button>
-							<button type="button" class="list-group-item">安全守则培训资料出来啦~</button>
+						<div class="list-group" id="informArea">
+
 						</div>
 					</div>
 				</div>
@@ -102,7 +87,43 @@
 				</footer>
 			</div>
 		</div>
-		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+		<!--前端模板-->
+		<script type="text/template" id="informTemplate">
+			<button type="button" class="list-group-item">{{=content}}
+				<span class="badge">未读</span>
+			</button>
+		</script>
+		<script type="text/javascript">
+            var $informArea=$("#informArea");
+            //得到模板函数
+            var compiled=_.template($("#informTemplate").html());
+
+            //ajax服务，获取信息
+            $.ajax({
+                "url":"/showInform",
+                "type":"get",
+                "success":function (result) {
+                    //result是一个数组
+//                console.log(Array.isArray(result));
+//				console.log(result);
+                    iterator(0);
+                    //迭代器
+                    //这里防止ajax异步，必须使用迭代器
+                    function iterator(i) {
+                        if (i == result.length) {
+                            //在这里书写请求完毕之后做的事情
+                            return;  //不用继续迭代了
+                        }
+                        console.log(result[i]);
+                        //组装模板
+                        var htmlstring = compiled(result[i]);
+                        //添加DOM
+                        $("#informArea").append($(htmlstring));
+                        iterator(i + 1);
+                    }
+                }
+            })
+		</script>
 	</body>
 </html>

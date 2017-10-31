@@ -267,7 +267,6 @@ app.get("/updataLesson",function(req,res,next){
     var lessonPath = req.query.lessonPath;
     var lessonImg=req.query.lessonImg==null?"img/lesson/react.jpg":req.query.lessonImg
     db.find("lesson",{"dengluming":dengluming},function (err,result) {
-
         db.insertOne("lesson",{
             "dengluming": dengluming,
             "lessonImg":lessonImg,
@@ -286,6 +285,32 @@ app.get("/updataLesson",function(req,res,next){
     });
 });
 
+//增加消息
+app.get("/addNotion",function(req,res,next){
+    var notionContent=req.query.notionContent;
+    db.insertOne("information",{
+            "dengluming":"admin",
+            "content": notionContent
+        },function(err,result){
+            if(err){
+                res.send("-1");
+                return;
+            }
+            res.send("1"); //更改成功
+        })
+});
+
+//显示消息
+app.get("/showInform",function (req,res,next) {
+    db.find("information",{"dengluming":"admin"},function (err,result) {
+        // console.log(result);
+        if(err || result.length == 0){
+            res.json("");
+            return;
+        }
+        res.json(result);
+    })
+});
 
 //管理员登录后的界面
 app.get("/managePage",function (req,res,next) {
