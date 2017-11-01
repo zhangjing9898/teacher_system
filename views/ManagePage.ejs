@@ -112,14 +112,13 @@
                 </form>
             </div>
             <div id="resource-upload" style="display: none;">
-                <div class="container kv-main">
-                    <br>
-                    <form enctype="multipart/form-data">
-                        <div class="form-group">
-                            <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">
-                        </div>
-                    </form>
-                </div>
+                <form action="/upImg" method="post"  enctype="multipart/form-data" >
+                    <div class="form-group">
+                        <!--<label for="username">请改头像</label>-->
+                        <input type="file" class="form-control" id="touxiang" name="touxiang">
+                    </div>
+                    <button type="submit" class="btn btn-default" >上传</button>
+                </form>
             </div>
             <div id="notion-message" >
                 <form>

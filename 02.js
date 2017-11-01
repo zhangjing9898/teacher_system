@@ -3,10 +3,10 @@ var app=express();
 session = require('express-session');
 var formidable=require("formidable");
 var db=require("./model/db");
-var path = require("path");
+var path=require("path");
 var fs = require("fs");
 var md5=require("./model/md5");
-
+var sd = require("silly-datetime");
 
 //使用session
 app.use(session({
@@ -18,6 +18,7 @@ app.use(session({
 app.set("view engine","ejs");
 
 app.use(express.static("./public"));
+app.use("/avatar",express.static("./avatar"));
 
 //显示首页
 app.get("/",function (req,res,next) {
@@ -365,15 +366,42 @@ app.post("/doManager",function(req,res,next){
 
 //上传课程图片
 //设置头像
-app.post("/dosetavatar", function (req, res, next) {
-    //必须保证登陆
-    // if (req.session.login != "1") {
-    //     res.end("非法闯入，这个页面要求登陆！");
-    //     return;
-    // }
+// app.post("/dosetavatar", function (req, res, next) {
+//     //必须保证登陆
+//     // if (req.session.login != "1") {
+//     //     res.end("非法闯入，这个页面要求登陆！");
+//     //     return;
+//     // }
+//
+//     var form = new formidable.IncomingForm();
+//     form.uploadDir = path.normalize(__dirname + "/../public/img/lesson");
+// });
 
+//上传图片
+app.post("/upImg",function (req, res, next) {
+    //必须保证登陆
+    if (req.session.login != "1") {
+        res.end("非法闯入，这个页面要求登陆！");
+        return;
+    }
     var form = new formidable.IncomingForm();
-    form.uploadDir = path.normalize(__dirname + "/../public/img/lesson");
+    form.uploadDir = path.normalize(__dirname + "/avatar");
+    form.parse(req, function (err, fields, files) {
+        console.log(files);
+        var ttt = sd.format(new Date(), 'YYYYMMDDHHmmss');
+        var ran = parseInt(Math.random() * 89999 + 10000);
+        var oldpath = files.touxiang.path;
+        var newpath = path.normalize(__dirname + "/avatar") + "/" +ttt + ran+ ".jpg";
+        fs.rename(oldpath, newpath, function (err) {
+            if (err) {
+                res.send("失败");
+                return;
+            }
+            req.session.avatar = req.session.username + ".jpg";
+            //跳转到切的业务
+            res.redirect("/");
+        });
+    });
 });
 
 app.listen(3000);
