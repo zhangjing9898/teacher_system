@@ -249,7 +249,7 @@ app.get("/showuserinfo",function (req,res,next) {
 app.get("/showLesson",function (req,res,next) {
     var dengluming=req.session.username
     db.find("lesson",{"dengluming":dengluming},function (err,result) {
-        // console.log(result);
+        console.log(result);
         if(err || result.length == 0){
             res.json("");
             return;
@@ -391,7 +391,7 @@ app.post("/upImg",function (req, res, next) {
         var ttt = sd.format(new Date(), 'YYYYMMDDHHmmss');
         var ran = parseInt(Math.random() * 89999 + 10000);
         var oldpath = files.touxiang.path;
-        var newpath = path.normalize(__dirname + "/avatar") + "/" +ttt + ran+ ".jpg";
+        var newpath = path.normalize(__dirname + "/public/download") + "/" +ttt + ran+ ".jpg";
         fs.rename(oldpath, newpath, function (err) {
             if (err) {
                 res.send("失败");
@@ -403,5 +403,11 @@ app.post("/upImg",function (req, res, next) {
         });
     });
 });
+//退出
+app.get("/exit",function (req,res) {
 
+    delete req.session.username;
+    req.session.login='-1';
+    res.redirect('/');
+});
 app.listen(3000);
