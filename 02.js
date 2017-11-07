@@ -286,6 +286,34 @@ app.get("/updataLesson",function(req,res,next){
     });
 });
 
+//增加资料
+app.get("/addReference",function(req,res,next){
+    var dengluming=req.query.dengluming
+    var lessonTitle = req.query.lessonTitle;
+    var lessonDetail = req.query.lessonDetail;
+    var lessonLevel = req.query.lessonLevel;
+    var lessonPopulation = req.query.lessonPopulation;
+    var lessonPath = req.query.lessonPath;
+    var lessonImg=req.query.lessonImg==null?"img/lesson/react.jpg":req.query.lessonImg
+    db.find("lesson",{"dengluming":dengluming},function (err,result) {
+        db.insertOne("lesson",{
+            "dengluming": dengluming,
+            "lessonImg":lessonImg,
+            "lessonTitle" : lessonTitle,
+            "lessonDetail":lessonDetail,
+            "lessonLevel":lessonLevel,
+            "lessonPopulation":lessonPopulation,
+            "lessonPath":lessonPath
+        },function(err,result){
+            if(err){
+                res.send("-1");
+                return;
+            }
+            res.send("1"); //更改成功
+        })
+    });
+});
+
 //增加消息
 app.get("/addNotion",function(req,res,next){
     var notionContent=req.query.notionContent;
@@ -313,13 +341,26 @@ app.get("/showInform",function (req,res,next) {
     })
 });
 
+//显示资料
+app.get("/showRefresh",function (req,res,next) {
+    db.find("reference",{"dengluming":"123"},function (err,result) {
+        // console.log(result);
+        if(err || result.length == 0){
+            res.json("");
+            return;
+        }
+        res.json(result);
+    })
+});
+
+
 //管理员登录后的界面
 app.get("/managePage",function (req,res,next) {
     //必须保证登陆
-    // if (req.session.login != "1") {
-    //     res.end("非法闯入，这个页面只能管理员才能访问！");
-    //     return;
-    // }
+    if (req.session.login != "1") {
+        res.end("非法闯入，这个页面只能管理员才能访问！");
+        return;
+    }
     res.render("ManagePage",{
         "login": req.session.login == "1" ? true : false,
         "username": req.session.login == "1" ? req.session.username : ""
@@ -364,20 +405,6 @@ app.post("/doManager",function(req,res,next){
     return;
 });
 
-//上传课程图片
-//设置头像
-// app.post("/dosetavatar", function (req, res, next) {
-//     //必须保证登陆
-//     // if (req.session.login != "1") {
-//     //     res.end("非法闯入，这个页面要求登陆！");
-//     //     return;
-//     // }
-//
-//     var form = new formidable.IncomingForm();
-//     form.uploadDir = path.normalize(__dirname + "/../public/img/lesson");
-// });
-
-//上传图片
 app.post("/upImg",function (req, res, next) {
     //必须保证登陆
     if (req.session.login != "1") {
@@ -385,27 +412,69 @@ app.post("/upImg",function (req, res, next) {
         return;
     }
     var form = new formidable.IncomingForm();
-    form.uploadDir = path.normalize(__dirname + "/avatar");
+    form.uploadDir = path.normalize(__dirname + "/public/download");
     form.parse(req, function (err, fields, files) {
         console.log(files);
-        var ttt = sd.format(new Date(), 'YYYYMMDDHHmmss');
+        var ttt = sd.format(new Date(), 'YYYY-MM-DD');
         var ran = parseInt(Math.random() * 89999 + 10000);
         var oldpath = files.touxiang.path;
-        var newpath = path.normalize(__dirname + "/public/download") + "/" +ttt + ran+ ".jpg";
+        var name=files.touxiang.name;
+        var newpath = path.normalize(__dirname + "/public/download") + "/" +name;
+        var optionPath=newpath;
+        req.session.optionPath="http://127.0.0.1:3000/download"+"/"+name;
         fs.rename(oldpath, newpath, function (err) {
             if (err) {
                 res.send("失败");
                 return;
             }
-            req.session.avatar = req.session.username + ".jpg";
-            //跳转到切的业务
-            res.redirect("/");
+            res.redirect("/upReference");
         });
     });
 });
+app.get("/upReference",function(req,res,next){
+    res.render("upReference",{
+    });
+});
+
+
+//补充资料
+app.get("/updataRef",function (req,res,next) {
+    //接收其他参数
+    var dataNum=req.query.dataNum;
+    var dataTitle=req.query.dataTitle;
+    var dataForm=req.query.dataForm;
+    var upDate=sd.format(new Date(), 'YYYY-MM-DD');
+    var downloadNum=parseInt(Math.random() * 100);
+    var endDate=req.query.endDate;
+    var category=req.query.category;
+    var option="下载";
+    var dengluming="123";
+    //插入数据到DB中
+    db.find("reference",{"dengluming":dengluming},function (err,result) {
+        db.insertOne("reference",{
+            "dengluming": dengluming,
+            "dataNum":dataNum,
+            "dataTitle" : dataTitle,
+            "dataForm":dataForm,
+            "upDate":upDate,
+            "endDate":endDate,
+            "downloadNum":downloadNum,
+            "category":category,
+            "option":option,
+            "optionPath":req.session.optionPath
+        },function(err,result){
+            if(err){
+                res.send("-1");
+                return;
+            }
+            res.send("1"); //更改成功
+        })
+    });
+})
+
+
 //退出
 app.get("/exit",function (req,res) {
-
     delete req.session.username;
     req.session.login='-1';
     res.redirect('/');

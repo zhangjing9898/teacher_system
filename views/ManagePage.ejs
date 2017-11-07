@@ -29,7 +29,7 @@
             <li id="notion-message-btn">
                 <a href="#"><i class="fa fa-fw fa-folder"></i> 系统通知</a>
             </li>
-            <li>
+            <li id="teacher-manager-btn">
                 <a href="#"><i class="fa fa-fw fa-file-o"></i> 教师管理</a>
             </li>
             <li id="lesson-manage-btn">
@@ -55,15 +55,6 @@
                         <a href="#">压缩包上传</a>
                     </li>
                 </ul>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-fw fa-bank"></i> Page four</a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-fw fa-dropbox"></i> Page 5</a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-fw fa-twitter"></i> Last page</a>
             </li>
         </ul>
     </nav>
@@ -109,7 +100,7 @@
                 </form>
             </div>
             <div id="resource-upload" style="display: none;">
-                <form action="/upImg" method="post"  enctype="multipart/form-data" >
+                <form  action="/upImg" method="post" enctype="multipart/form-data" >
                     <div class="form-group">
                         <label for="username">上传资料</label>
                         <input type="file" class="form-control" id="touxiang" name="touxiang">
@@ -126,6 +117,13 @@
                     <button type="submit"  class="btn btn-primary" id="notionSubmit">提交</button>
                     <div class="alert alert-success" role="alert" id="cuowukuang" style="display: none">
                         提交成功！
+                    </div>
+                </form>
+            </div>
+            <div id="teacher-manager" style="display: none;" >
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">暂无教师信息</label>
                     </div>
                 </form>
             </div>
@@ -166,7 +164,9 @@
                 isClosed = true;
             }
         }
-
+        $("#referenceBtn").click(function () {
+            alert($("#touxiang").val()) ;
+        })
         $('[data-toggle="offcanvas"]').click(function() {
             $('#wrapper').toggleClass('toggled');
         });
@@ -177,11 +177,19 @@
         $('.dropdown li').click(function(){
             $('#resource-upload').show();
             $("#resource-upload").siblings().hide();
+//            $("#sidebar-wrapper").hide();
         });
         $('#notion-message-btn').click(function(){
             $("#notion-message").show();
             $('#notion-message').siblings().hide();
+//            $("#sidebar-wrapper").hide();
         });
+        $("#teacher-manager-btn").click(function () {
+            $("#teacher-manager").show();
+            $("#teacher-manager").siblings().hide();
+        })
+
+
 
         //获取val
         $("#manageSubmitBtn").click(function () {
@@ -220,7 +228,10 @@
 //                    window.location = "/";
                 }
             })
-        })
+        });
+        //$(selector).get(url,data,success(response,status,xhr),dataType)
+        //jQuery.post(url,data,success(data, textStatus, jqXHR),dataType)
+
     });
 </script>
 </body>
