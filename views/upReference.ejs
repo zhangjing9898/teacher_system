@@ -52,7 +52,7 @@
                         <label for="exampleInputPassword1">所属类别</label>
                         <input type="text" class="form-control" id="category" placeholder="Belongs to the category">
                     </div>
-                    <button type="submit" id="referenceBtn" class="btn btn-default" >上传</button>
+                    <button type="submit" id="referenceBtn" class="btn btn-primary" >上传</button>
                 </form>
             </div>
         </div>
@@ -73,13 +73,13 @@
                 console.log(result);
                 if (result == "1") {
                     alert("资料上传成功！");
-//                    $("#cuowukuang").fadeIn();
-//                    window.location = "/";
+                    $("#cuowukuang").fadeIn();
+                    window.location = "/";
                 } else {
                     alert("资料上传失败！");
-//                    $("#cuowukuang").fadeIn();
-//                    $("#cuowukuang").html("提交失败");
-//                    window.location = "/";
+                    $("#cuowukuang").fadeIn();
+                    $("#cuowukuang").html("提交失败");
+                    window.location = "/";
                 }
             })
         })

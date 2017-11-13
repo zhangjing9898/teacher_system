@@ -244,11 +244,23 @@ app.get("/showuserinfo",function (req,res,next) {
         res.json(result);
     })
 });
+//显示修改资料
+// app.get("/showalluserinfo",function (req,res,next) {
+//     var dengluming=req.query.dengluming;
+//     db.find("post",{"dengluming":dengluming},function (err,result) {
+//         console.log(result);
+//         if(err || result.length == 0){
+//             res.json("");
+//             return;
+//         }
+//         res.json(result);
+//     })
+// });
 
 //显示课程
 app.get("/showLesson",function (req,res,next) {
     var dengluming=req.session.username
-    db.find("lesson",{"dengluming":dengluming},function (err,result) {
+    db.find("lesson",{"dengluming":"123"},function (err,result) {
         console.log(result);
         if(err || result.length == 0){
             res.json("");
@@ -344,7 +356,6 @@ app.get("/showInform",function (req,res,next) {
 //显示资料
 app.get("/showRefresh",function (req,res,next) {
     db.find("reference",{"dengluming":"123"},function (err,result) {
-        // console.log(result);
         if(err || result.length == 0){
             res.json("");
             return;

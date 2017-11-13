@@ -24,7 +24,6 @@
 
 body {
 				padding-top: 50px;
-				padding-bottom: 40px;
 				font-family: "微软雅黑";
 			}
 			
@@ -150,4 +149,3 @@ body {
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 }
-

@@ -126,7 +126,7 @@ html {
 .sidebar-nav li a {
   color: #dddddd;
   display: block;
-  padding: 10px 15px 10px 30px;
+  padding: 10px 15px 10px 10px;
   text-decoration: none;
 }
 .sidebar-nav li.open:hover before {
@@ -306,4 +306,39 @@ body a {
 }
 body a:hover {
   color: #ffffff;
+}
+.sidebar-brand a img{
+  width: 25px;
+  position: absolute;
+  top: 19px;
+}
+.sidebar-brand a span{
+  position: absolute;
+  left: 42px;
+}
+.otherLi a img{
+  width: 25px;
+  position: absolute;
+  top: 19px;
+}
+.otherLi a span{
+  position: absolute;
+  left: 42px;
+}
+#indexArea p a{
+  text-decoration: none;
+}
+#indexArea p .btn-primary{
+  color: #fff;
+  background-color: #583e7e;
+  border-color: #583e7e;
+}
+#indexArea p{
+  color: #583e7e;
+}
+#indexArea h1{
+  color: #583e7e;
+}
+#indexArea .jumbotron {
+  background-color: #cdc5d9;
 }

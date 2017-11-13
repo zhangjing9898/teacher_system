@@ -18,10 +18,34 @@
   },
   {
     "tableDate":"2016年4月21日",
-    "teacherName":"Harry",
+    "teacherName":"蒋冬梅",
     "teacherNum":"10920920035",
-    "studyTime":"4小时10分",
-    "lessonCategory":"中国古典文学",
-    "allTime":"123小时"
+    "studyTime":"2小时30分",
+    "lessonCategory":"旅游纪念品设计",
+    "allTime":"10小时"
+  },
+  {
+    "tableDate":"2016年4月21日",
+    "teacherName":"李浩",
+    "teacherNum":"20920920000",
+    "studyTime":"1小时",
+    "lessonCategory":"陶瓷鉴赏",
+    "allTime":"13小时"
+  },
+  {
+    "tableDate":"2016年4月21日",
+    "teacherName":"张璐",
+    "teacherNum":"10920920055",
+    "studyTime":"1小时5分",
+    "lessonCategory":"莎士比亚简介",
+    "allTime":"3小时"
+  },
+  {
+    "tableDate":"2016年4月21日",
+    "teacherName":"皮夏",
+    "teacherNum":"10920920000",
+    "studyTime":"30分",
+    "lessonCategory":"心理疏导教育",
+    "allTime":"0.7小时"
   }
 ]
