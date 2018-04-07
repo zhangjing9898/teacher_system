@@ -1,0 +1,37 @@
+{
+  "_id" : ObjectId("5a00570710e970f80c00590f"),
+  "dengluming" : "admin",
+  "content" : "这是第一条系统消息！！！"
+}{
+  "_id" : ObjectId("5a090685825be0902abb7e78"),
+  "dengluming" : "admin",
+  "content" : "第二条信息！！！"
+}{
+  "_id" : ObjectId("5a09073f825be0902abb7e79"),
+  "dengluming" : "admin",
+  "content" : "第三条测试中！！！！"
+}{
+  "_id" : ObjectId("5a093c195a2c9ee424386747"),
+  "dengluming" : "admin",
+  "content" : "童老师发布了一节新课，欢迎点进学习"
+}{
+  "_id" : ObjectId("5a09408e5a2c9ee424386748"),
+  "dengluming" : "admin",
+  "content" : "第4条系统消息发布中..."
+}{
+  "_id" : ObjectId("5a09460f5a2c9ee424386749"),
+  "dengluming" : "admin",
+  "content" : "推送第五条..."
+}{
+  "_id" : ObjectId("5a0948175a2c9ee42438674a"),
+  "dengluming" : "admin",
+  "content" : "第六条消息"
+}{
+  "_id" : ObjectId("5a127f82128aa2d0418f1173"),
+  "dengluming" : "admin",
+  "content" : "系统消息推送~"
+}{
+  "_id" : ObjectId("5a1fb18ec375533448bc844c"),
+  "dengluming" : "admin",
+  "content" : "新消息推送"
+}

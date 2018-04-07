@@ -1,0 +1,17 @@
+{
+  "_id" : ObjectId("59dc9969b5138fa429d66b93"),
+  "dengluming" : "123",
+  "mima" : "/kYX/JDJYSW8uCfR1nNeTQ=="
+}{
+  "_id" : ObjectId("59de1496c268f6d02dce87d2"),
+  "dengluming" : "张靖",
+  "mima" : "/kYX/JDJYSW8uCfR1nNeTQ=="
+}{
+  "_id" : ObjectId("59e1642373e24b543244d04f"),
+  "dengluming" : "12345",
+  "mima" : "I9KWQewvyAwmK5MXEBMKVA=="
+}{
+  "_id" : ObjectId("59e166b7dded73a0371f5667"),
+  "dengluming" : "1234",
+  "mima" : "kJzuvRfW4ZGNpFJWbv7kYw=="
+}

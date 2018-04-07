@@ -1,0 +1,15 @@
+{
+  "_id" : ObjectId("59dc9cc6e879948c13bc983b"),
+  "dengluming" : "123",
+  "teacherId" : "15310920203",
+  "collegeName" : "清华大学",
+  "telNum" : "13648030826",
+  "sex" : "女",
+  "lesson" : "团员",
+  "enterYear" : "2015",
+  "politicalStatus" : "团员",
+  "familyInfo" : "独生子女",
+  "awardInfo" : "无",
+  "reallyName" : "李四",
+  "IDnumber" : "513113199802105033"
+}
